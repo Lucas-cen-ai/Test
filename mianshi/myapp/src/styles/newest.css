@@ -1,0 +1,8 @@
+.unanswered {
+  color: green;
+  border: 1px solid green;
+}
+.respondent {
+  color: green;
+  border: 1px solid green;
+}
