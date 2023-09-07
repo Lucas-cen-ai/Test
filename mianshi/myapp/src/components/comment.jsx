@@ -1,50 +1,53 @@
+import { Card } from "antd";
 import { mock } from "../mock/mock";
 import { createCommentTree } from "../utils/createTree";
 import { CommentTemplate } from "./commentTemplate";
+import Paginations from "./pagination";
 
-function commentList(comment, depth = 0, visitedNodes = new Set()) {
-  const commentComponents = [];
-
-  // 检查当前评论节点是否已经被访问过
-  if (visitedNodes.has(comment.id)) {
-    return commentComponents;
+function CommentList({ comments }) {
+ console.log(comments)
+  if (comments.length > 0) {
+    return comments.map((comment) => (
+      <Comment
+        key={comment.id}
+        comment={comment}
+      />
+    ));
   }
+ 
+}
 
-  visitedNodes.add(comment.id);
-  const currentComment = <CommentTemplate commentDataInfo={comment} />;
-
-  // 添加缩进样式
-  const style = { paddingLeft: depth * 67 + "px" };
-
-  // 遍历子评论
-  if (comment.children) {
-    comment.children.forEach((child) => {
-      const childComponents = commentList(child, depth + 1, visitedNodes);
-      commentComponents.push(...childComponents);
-    });
-  }
-
-  // 组合父评论和所有子评论
-  commentComponents.unshift(
-    <div key={comment.id} style={style}>
-      {currentComment}
+function Comment({ comment }) {
+  return (
+    <div>
+      {
+        comment.children && <CommentTemplate commentDataInfo={comment} />
+      }
+      {
+        comment.children && comment.children != false && (
+          <Card>
+          <CommentList
+            comments={comment.children}
+          />
+        </Card>
+        )
+      }
     </div>
   );
-
-  // 返回数组
-  return commentComponents;
 }
 
 
 export function CommentPage() {
-  const description = {name : "Lucas", content : "Lucas Hell" };
   const commentDataInfos = createCommentTree(mock)
+  console.log(commentDataInfos)
  return (
    <div>
-     {commentDataInfos.map((commentDataInfo) => {
-        return commentList(commentDataInfo);
-     })}
-    
+     <div style={{height:"90%"}}>
+      <CommentList comments={commentDataInfos} />
+     </div>
+     <div style={{display:"flex",justifyContent:"end",marginTop:"15px"}}>
+       <Paginations tatol= {50} />
+     </div>
    </div>
  );
 }

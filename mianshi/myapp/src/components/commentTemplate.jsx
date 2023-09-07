@@ -1,3 +1,4 @@
+import { Card } from "antd";
 import { CommentFooter } from "./commentFooter";
 import { CommentIcons } from "./commentIcons";
 import { CommentSidebar } from "./commentSidebar";
@@ -43,7 +44,8 @@ export function CommentTemplate(props) {
     description,
   } = anyalysisDataInfo(commentDataInfo);
   return (
-    <div style={{ display: "flex", marginBottom:25 }}>
+    <Card>
+       <div style={{ display: "flex", marginBottom: 25 }}>
       <div style={{ display: "flex" }}>
         <CommentIcons icon={icon} />
       </div>
@@ -57,6 +59,9 @@ export function CommentTemplate(props) {
           collectedFlag={collectedFlag}
         />
       </div>
-    </div>
+      </div>
+     
+    </Card>
+   
   );
 }

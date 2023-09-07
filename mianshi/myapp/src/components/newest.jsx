@@ -2,6 +2,7 @@ import { Button } from "antd";
 import { NewsetTitile } from "./newestTitle";
 import { ClassifyButton } from "./classifyButton";
 import { NewestFooter } from "./newestFooter";
+import { ContentText } from "./contentText";
 export function NewestPage() {
   const title = "最新";
   const questionStatus = "未回答";
@@ -20,6 +21,8 @@ export function NewestPage() {
     <div>
       <NewsetTitile title={title} questionStatus={questionStatus} />
       <Button>{grade}</Button>
+      <ContentText content={ "hello"} />
+
       <ClassifyButton classifys={classifys} />
       <NewestFooter eyeOutlined={eyeOutlined} commentNumber={ commentNumber} />
     </div>
