@@ -1,12 +1,12 @@
 export function CommentSidebar(props) {
   const { description } = props;
-  return <div>
+  return (
     <div>
-    <div>{description.name}</div>
-    <div>{description.content}</div>
+      <div>
+        <div>{description.name}</div>
+        <div>{description.comment}</div>
+      </div>
+      <div></div>
     </div>
-    <div>
-    </div>
-    
-  </div>
+  );
 }

@@ -5,10 +5,12 @@ import {
   LikeOutlined,
   EyeOutlined,
   MessageOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 
 export function CommentFooter(props) {
-  const { eyeOutlined, commentNumber, likeNumber } = props;
+  const { likedCount, repliedCount, collectedFlag, collectedCount, likedFlag } =
+    props;
   const publicClass = {
     display: "flex",
     justifyContent: "space-between",
@@ -27,15 +29,19 @@ export function CommentFooter(props) {
           }}
           icon={<LikeOutlined />}
         >
-          <div>{likeNumber}</div>
+          <div>{likedCount}</div>
         </Button>
         |
         <Button type="link" style={publicClass} icon={<StarOutlined />}>
-          <div>{eyeOutlined}</div>
+          <div>{repliedCount}</div>
         </Button>
         |
         <Button type="link" style={publicClass} icon={<MessageOutlined />}>
-          <div>{commentNumber}</div>
+          <div>{collectedCount}</div>
+        </Button>
+        |
+        <Button type="link" style={publicClass} icon={<EditOutlined />}>
+          <div>回复评论</div>
         </Button>
       </div>
     </div>
